@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>About you</title>
+	<style>
+		
+		body{ text-align: center; font-family: Arial, sans-serif;}
+		select {margin-bottom: 15px;}
+		.selection{margin-bottom: 20px; background-color: #F9C5C6; border: 1px solid #000000; width: 300px; height: 20px; margin-left: auto;
+			margin-right: auto; font-weight: bold;}
+		#button {height: 50px; width: 400px; background-color: #A991C3; margin-bottom: 20px; font-weight: bold; font-size: 18px;}
+		.result {
+			width: 385px; background-color: #D8EDD3;
+			border: 1px solid #000000; margin: auto; padding: 15px;
+			font-size: 18px;
+		}
+
+
+	</style>
+</head>
+<body>
+	<h1>Your favorite things</h1>
+	<h2>Choose your favorite things so we can learn more about you!</h2>
+
+<form>
+
+<label>Your favorite season: </label>
+
+<select class="choice" id="seasons">
+	<option disabled selected value> -- select an option -- </option>
+    <option>Winter</option>
+    <option>Spring</option>
+    <option>Summer</option>
+    <option>Autumn</option>
+</select>
+<div id="season-selection" class="selection"></div>
+
+<label>Your favorite dessert: </label>
+
+<select class="choice" id="dessert">
+    <option disabled selected value> -- select an option -- </option>
+    <option >Tiramisu</option>
+    <option>Ice cream</option>
+    <option>Cheesecake</option>
+    <option>Fruit salad</option>
+</select>
+
+<div id="dessert-selection" class="selection"></div>
+
+<label for="sport">Your favorite sport: </label>
+
+<select class="choice" id="sport">
+    <option disabled selected value> -- select an option -- </option>
+    <option>Basketball</option>
+    <option>Tennis</option>
+	<option>Volleyball</option>
+	<option>Football</option>
+</select>
+<div id="sport-selection" class="selection"></div>
+
+<label>Your favorite music: </label>
+
+<select class="choice" id="music">
+	<option disabled selected value> -- select an option -- </option>
+	<option>Jazz</option>
+	<option>Classical</option>
+	<option>Rock</option>
+	<option>Pop</option>
+</select>
+<div id="music-selection" class="selection"></div>
+
+<input type="button" id="button" value = "Click to see what we know about you now!">
+
+</form>
+
+<div id="result"></div>
+
+<script type="text/javascript">
+	
+	var list = document.getElementsByClassName("choice");
+	var result = document.getElementById("result");	
+	var button = document.getElementById("button");
+
+	button.addEventListener("click", getResult);
+
+	list[0].addEventListener("change", changeSeason);
+	list[1].addEventListener("change", changeDessert);
+	list[2].addEventListener("change", changeSport);
+	list[3].addEventListener("change", changeMusic);
+
+
+	function getResult (){
+
+
+			result.classList.add("result");
+
+		if(list[0].selectedIndex == 0 || list[1].selectedIndex == 0 || list[2].selectedIndex == 0 || list[3].selectedIndex == 0) 
+			
+			{  result.innerHTML = "Pick one option from each list!";
+
+	} 
+
+		else { 
+
+		   	result.innerHTML = `Your favorite season is ${season}, and you love to eat ${dessert}! You might not be the best at playing  it, but you really enjoy watching ${sport}. When you want to relax, just play some ${music} music.`;
+		}
+};
+
+
+	function changeSeason (e){
+
+		
+      	var choice = document.getElementById("season-selection");
+	
+		choice.innerHTML = `You chose: ${e.target.value}`;
+		season = e.target.value.toLowerCase();
+
+};
+
+	function changeDessert (e){
+
+	
+		var choice = document.getElementById("dessert-selection");
+
+		choice.innerHTML = `You chose: ${e.target.value}`;
+		dessert = e.target.value.toLowerCase();
+
+};
+	
+	function changeSport (e){
+
+		var choice = document.getElementById("sport-selection");
+	
+		choice.innerHTML = `You chose: ${e.target.value}`;
+		sport = e.target.value.toLowerCase();
+
+};
+
+	function changeMusic (e){
+
+		var choice = document.getElementById("music-selection");
+
+		choice.innerHTML = `You chose: ${e.target.value}`;
+		music = e.target.value.toLowerCase();
+
+};
+	
+</script>
+</body>
+</html>
